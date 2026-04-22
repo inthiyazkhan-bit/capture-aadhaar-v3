@@ -89,11 +89,10 @@ function PopupGuide() {
             onClick={() => setTab(t)}
             style={{
               flex: 1, padding: '7px 8px', borderRadius: 7,
-              background: tab === t ? '#FFFFFF' : 'transparent',
-              boxShadow: tab === t ? '0 1px 3px rgba(17,24,39,0.08), 0 0 0 1px rgba(17,24,39,0.04)' : 'none',
+              background: tab === t ? 'rgba(23,102,214,0.12)' : 'transparent',
               textAlign: 'center',
               fontSize: 14, fontWeight: tab === t ? 700 : 500,
-              color: tab === t ? '#131A25' : 'rgba(19,26,37,0.40)',
+              color: tab === t ? '#1766D6' : 'rgba(19,26,37,0.40)',
               cursor: 'pointer', transition: 'all 180ms ease',
               letterSpacing: '-0.01em',
             }}
