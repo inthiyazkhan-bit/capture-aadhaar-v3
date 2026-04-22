@@ -1,7 +1,8 @@
 const CAROUSEL_STEPS = [
-  { title: 'Enter Aadhaar number & verify with OTP',         Visual: () => <Step1AadhaarOtp/> },
-  { title: 'Enter your DigiLocker Security PIN',             Visual: () => <Step2Pin/> },
-  { title: 'Select Aadhaar in the documents, & click Allow', Visual: () => <Step3SelectAndAllow/> },
+  { title: 'Enter your Aadhaar number',                         Visual: () => <Step1AadhaarNumber/> },
+  { title: 'Verify with OTP sent to your mobile',               Visual: () => <Step2OTP/> },
+  { title: 'Enter your DigiLocker Security PIN',                Visual: () => <Step3Pin/> },
+  { title: 'Select Aadhaar in the documents, & click Allow',    Visual: () => <Step4SelectAndAllow/> },
 ];
 
 function StepsCarousel({ intervalMs = 4500 }) {
@@ -64,7 +65,6 @@ function StepsCarousel({ intervalMs = 4500 }) {
           );
         })}
       </div>
-
 
     </div>
   );

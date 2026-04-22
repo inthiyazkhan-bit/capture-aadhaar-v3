@@ -37,81 +37,80 @@ function MiniPhoneHeader() {
   );
 }
 
-/* ───────────── Step 1: Aadhaar number → OTP (two phases in one card) ───────────── */
-function Step1AadhaarOtp() {
-  // phase 0 = typing digits, phase 1 = filling OTP
-  const [phase, setPhase] = _useS(0);
-  const [tick, setTick]   = _useS(0);
+/* ───────────── Step 1: Enter Aadhaar number ───────────── */
+function Step1AadhaarNumber() {
+  const [tick, setTick] = _useS(0);
 
   _useE(() => {
-    if (phase === 0) {
-      if (tick < 12) {
-        const id = setTimeout(() => setTick(t => t + 1), 150);
-        return () => clearTimeout(id);
-      }
-      const id = setTimeout(() => { setPhase(1); setTick(0); }, 700);
-      return () => clearTimeout(id);
-    }
-    // phase 1
-    if (tick < 6) {
-      const id = setTimeout(() => setTick(t => t + 1), 230);
-      return () => clearTimeout(id);
-    }
-  }, [phase, tick]);
+    if (tick >= 12) return;
+    const id = setTimeout(() => setTick(t => t + 1), 150);
+    return () => clearTimeout(id);
+  }, [tick]);
 
-  const digits = '1234567890123'.slice(0, Math.min(tick, 12));
+  const digits = '123456789012'.slice(0, tick);
   const groups = [digits.slice(0, 4), digits.slice(4, 8), digits.slice(8, 12)];
 
   return (
     <MiniPhone>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14 }}>
         <DigiLockerLogo height={22}/>
-
-        {phase === 0 ? (
-          <>
-            <div style={{ fontSize: 12, fontWeight: 700, color: '#1A1A1A', textAlign: 'center' }}>
-              Enter Aadhaar number
-            </div>
-            <div style={{
-              width: 190,
-              border: '1.5px solid #D8D8D8', borderRadius: 8, padding: '9px 10px',
-              display: 'flex', justifyContent: 'center', gap: 10,
-              fontSize: 12, fontWeight: 600, letterSpacing: '0.05em', background: '#fff',
-              boxSizing: 'border-box',
-            }}>
-              {[0, 1, 2].map(i => (
-                <span key={i} style={{ minWidth: 38, textAlign: 'center', color: groups[i] ? '#1A1A1A' : '#C8C8C8' }}>
-                  {groups[i] || 'XXXX'}
-                </span>
-              ))}
-            </div>
-          </>
-        ) : (
-          <>
-            <div style={{ fontSize: 12, fontWeight: 700, color: '#1A1A1A', textAlign: 'center', whiteSpace: 'nowrap' }}>
-              Enter OTP
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: 5 }}>
-              {[0, 1, 2, 3, 4, 5].map(i => (
-                <div key={i} style={{
-                  width: 22, height: 28, borderRadius: 5,
-                  border: `1.5px solid ${tick > i ? '#1A56DB' : '#D8D8D8'}`,
-                  background: tick > i ? '#EEF4FF' : '#fff',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: 14, fontWeight: 700, color: '#1A56DB',
-                  transition: 'all 180ms ease',
-                }}>{tick > i ? '•' : ''}</div>
-              ))}
-            </div>
-          </>
-        )}
+        <div style={{ fontSize: 12, fontWeight: 700, color: '#1A1A1A', textAlign: 'center' }}>
+          Enter Aadhaar number
+        </div>
+        <div style={{
+          width: 190,
+          border: '1.5px solid #D8D8D8', borderRadius: 8, padding: '9px 10px',
+          display: 'flex', justifyContent: 'center', gap: 10,
+          fontSize: 12, fontWeight: 600, letterSpacing: '0.05em', background: '#fff',
+          boxSizing: 'border-box',
+        }}>
+          {[0, 1, 2].map(i => (
+            <span key={i} style={{ minWidth: 38, textAlign: 'center', color: groups[i] ? '#1A1A1A' : '#C8C8C8' }}>
+              {groups[i] || 'XXXX'}
+            </span>
+          ))}
+        </div>
       </div>
     </MiniPhone>
   );
 }
 
-/* ───────────── Step 2: DigiLocker 6-digit PIN ───────────── */
-function Step2Pin() {
+/* ───────────── Step 2: Enter OTP ───────────── */
+function Step2OTP() {
+  const [tick, setTick] = _useS(0);
+
+  _useE(() => {
+    if (tick >= 6) return;
+    const id = setTimeout(() => setTick(t => t + 1), 230);
+    return () => clearTimeout(id);
+  }, [tick]);
+
+  return (
+    <MiniPhone>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14 }}>
+        <DigiLockerLogo height={22}/>
+        <div style={{ fontSize: 12, fontWeight: 700, color: '#1A1A1A', textAlign: 'center', whiteSpace: 'nowrap' }}>
+          Enter OTP
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 5 }}>
+          {[0, 1, 2, 3, 4, 5].map(i => (
+            <div key={i} style={{
+              width: 22, height: 28, borderRadius: 5,
+              border: `1.5px solid ${tick > i ? '#1A56DB' : '#D8D8D8'}`,
+              background: tick > i ? '#EEF4FF' : '#fff',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: 14, fontWeight: 700, color: '#1A56DB',
+              transition: 'all 180ms ease',
+            }}>{tick > i ? '•' : ''}</div>
+          ))}
+        </div>
+      </div>
+    </MiniPhone>
+  );
+}
+
+/* ───────────── Step 3: DigiLocker 6-digit PIN ───────────── */
+function Step3Pin() {
   const [fill, setFill] = _useS(0);
   _useE(() => {
     if (fill >= 6) return;
@@ -143,12 +142,12 @@ function Step2Pin() {
   );
 }
 
-/* ───────────── Step 3: Select Aadhaar & Allow (combined, matches reference) ───────────── */
-function Step3SelectAndAllow() {
+/* ───────────── Step 4: Select Aadhaar & Allow ───────────── */
+function Step4SelectAndAllow() {
   return (
     <MiniPhone align="flex-start">
       <MiniPhoneHeader/>
-      <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 7 }}>
+      <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 5 }}>
         <div style={{
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
           fontSize: 10, fontWeight: 600, color: '#1A1A1A',
@@ -157,7 +156,6 @@ function Step3SelectAndAllow() {
           <span style={{ color: '#1766D6' }}>Select all</span>
         </div>
 
-        {/* Aadhaar row — selected, pulsing red highlight */}
         <div style={{
           padding: '7px 10px',
           border: '1.5px solid #1766D6', borderRadius: 7,
@@ -175,7 +173,6 @@ function Step3SelectAndAllow() {
           </div>
         </div>
 
-        {/* PAN row — unselected */}
         <div style={{
           padding: '7px 10px',
           border: '1px solid #E0E0E0', borderRadius: 7,
@@ -186,8 +183,7 @@ function Step3SelectAndAllow() {
           <div style={{ width: 12, height: 12, borderRadius: 3, border: '1.5px solid #C8C8C8' }}/>
         </div>
 
-        {/* Deny / Allow buttons — stacked, matching size */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: 6, marginTop: 6 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: 5, marginTop: 3 }}>
           <div style={{
             padding: '7px 0', borderRadius: 7,
             border: '1.5px solid #D8D8D8', background: '#fff',
@@ -195,8 +191,10 @@ function Step3SelectAndAllow() {
             textAlign: 'center',
           }}>Deny</div>
           <div style={{
-            padding: '7px 0', borderRadius: 7,
+            padding: '6px 0', borderRadius: 7,
             background: '#1766D6',
+            border: '2px solid #E53E3E',
+            boxSizing: 'border-box',
             fontSize: 11, fontWeight: 700, color: '#fff',
             textAlign: 'center',
           }}>Allow</div>
@@ -206,4 +204,4 @@ function Step3SelectAndAllow() {
   );
 }
 
-Object.assign(window, { MiniPhone, MiniPhoneHeader, Step1AadhaarOtp, Step2Pin, Step3SelectAndAllow });
+Object.assign(window, { MiniPhone, MiniPhoneHeader, Step1AadhaarNumber, Step2OTP, Step3Pin, Step4SelectAndAllow });
