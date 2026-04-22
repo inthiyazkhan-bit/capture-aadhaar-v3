@@ -43,7 +43,7 @@ function Step1AadhaarNumber() {
 
   _useE(() => {
     if (tick >= 12) return;
-    const id = setTimeout(() => setTick(t => t + 1), 150);
+    const id = setTimeout(() => setTick(t => t + 1), 75);
     return () => clearTimeout(id);
   }, [tick]);
 
@@ -81,7 +81,7 @@ function Step2OTP() {
 
   _useE(() => {
     if (tick >= 6) return;
-    const id = setTimeout(() => setTick(t => t + 1), 230);
+    const id = setTimeout(() => setTick(t => t + 1), 115);
     return () => clearTimeout(id);
   }, [tick]);
 
@@ -114,7 +114,7 @@ function Step3Pin() {
   const [fill, setFill] = _useS(0);
   _useE(() => {
     if (fill >= 6) return;
-    const id = setTimeout(() => setFill(f => f + 1), 260);
+    const id = setTimeout(() => setFill(f => f + 1), 130);
     return () => clearTimeout(id);
   }, [fill]);
 
