@@ -80,7 +80,7 @@ function PopupGuide() {
       {/* Block segmented tabs */}
       <div style={{
         display: 'flex', gap: 4, padding: 4,
-        background: '#ECEDED', borderRadius: 10,
+        background: '#FAFAFB', borderRadius: 10,
         marginBottom: 16,
       }}>
         {['mobile', 'desktop'].map(t => (
@@ -92,7 +92,7 @@ function PopupGuide() {
               background: tab === t ? 'rgba(23,102,214,0.12)' : 'transparent',
               textAlign: 'center',
               fontSize: 14, fontWeight: tab === t ? 700 : 500,
-              color: tab === t ? '#1766D6' : 'rgba(19,26,37,0.40)',
+              color: tab === t ? '#1766D6' : '#484E56',
               cursor: 'pointer', transition: 'all 180ms ease',
               letterSpacing: '-0.01em',
             }}
