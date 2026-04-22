@@ -160,10 +160,9 @@ function Step3SelectAndAllow() {
         {/* Aadhaar row — selected, pulsing red highlight */}
         <div style={{
           padding: '7px 10px',
-          border: '2px solid #E53E3E', borderRadius: 7,
+          border: '1.5px solid #1766D6', borderRadius: 7,
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
           fontSize: 11, fontWeight: 700, color: '#1A1A1A',
-          animation: 'pulseRed 1.6s ease-in-out infinite',
         }}>
           <span>Aadhaar Card</span>
           <div style={{
@@ -196,16 +195,11 @@ function Step3SelectAndAllow() {
             textAlign: 'center',
           }}>Deny</div>
           <div style={{
-            border: '2px solid #E53E3E', borderRadius: 9, padding: 2,
-            animation: 'pulseRed 1.6s ease-in-out infinite',
-          }}>
-            <div style={{
-              padding: '5px 0', borderRadius: 6,
-              background: '#1766D6',
-              fontSize: 11, fontWeight: 700, color: '#fff',
-              textAlign: 'center',
-            }}>Allow</div>
-          </div>
+            padding: '7px 0', borderRadius: 7,
+            background: '#1766D6',
+            fontSize: 11, fontWeight: 700, color: '#fff',
+            textAlign: 'center',
+          }}>Allow</div>
         </div>
       </div>
     </MiniPhone>
