@@ -144,6 +144,12 @@ function Step3Pin() {
 
 /* ───────────── Step 4: Select Aadhaar & Allow ───────────── */
 function Step4SelectAndAllow() {
+  const [selected, setSelected] = _useS(false);
+  _useE(() => {
+    const id = setTimeout(() => setSelected(true), 350);
+    return () => clearTimeout(id);
+  }, []);
+
   return (
     <MiniPhone align="flex-start">
       <MiniPhoneHeader/>
@@ -158,18 +164,24 @@ function Step4SelectAndAllow() {
 
         <div style={{
           padding: '7px 10px',
-          border: '1px solid #ECEDED', borderRadius: 7, background: '#fff',
+          border: `1.5px solid ${selected ? '#1766D6' : '#BFC2C4'}`, borderRadius: 7, background: '#fff',
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
           fontSize: 11, fontWeight: 700, color: '#1A1A1A',
+          transition: 'border 175ms ease',
         }}>
           <span>Aadhaar Card</span>
           <div style={{
-            width: 14, height: 14, borderRadius: 3, background: '#16A34A',
+            width: 14, height: 14, borderRadius: 3,
+            background: selected ? '#16A34A' : 'transparent',
+            border: selected ? 'none' : '1.5px solid #BFC2C4',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
+            transition: 'all 175ms ease',
           }}>
-            <svg width="9" height="9" viewBox="0 0 12 12">
-              <path d="M2 6 L5 9 L10 3" stroke="#fff" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+            {selected && (
+              <svg width="9" height="9" viewBox="0 0 12 12">
+                <path d="M2 6 L5 9 L10 3" stroke="#fff" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            )}
           </div>
         </div>
 
