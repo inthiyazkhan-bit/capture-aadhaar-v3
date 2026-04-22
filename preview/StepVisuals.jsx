@@ -158,12 +158,19 @@ function Step4SelectAndAllow() {
 
         <div style={{
           padding: '7px 10px',
-          border: '1px solid #ECEDED', borderRadius: 7,
+          border: '1px solid #ECEDED', borderRadius: 7, background: '#fff',
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
           fontSize: 11, fontWeight: 700, color: '#1A1A1A',
         }}>
           <span>Aadhaar Card</span>
-          <div style={{ width: 14, height: 14, borderRadius: 3, border: '1.5px solid #BFC2C4' }}/>
+          <div style={{
+            width: 14, height: 14, borderRadius: 3, background: '#16A34A',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}>
+            <svg width="9" height="9" viewBox="0 0 12 12">
+              <path d="M2 6 L5 9 L10 3" stroke="#fff" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
         </div>
 
         <div style={{
