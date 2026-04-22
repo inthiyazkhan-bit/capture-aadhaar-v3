@@ -43,7 +43,7 @@ function Step1AadhaarNumber() {
 
   _useE(() => {
     if (tick >= 12) return;
-    const id = setTimeout(() => setTick(t => t + 1), 75);
+    const id = setTimeout(() => setTick(t => t + 1), 52);
     return () => clearTimeout(id);
   }, [tick]);
 
@@ -81,7 +81,7 @@ function Step2OTP() {
 
   _useE(() => {
     if (tick >= 6) return;
-    const id = setTimeout(() => setTick(t => t + 1), 115);
+    const id = setTimeout(() => setTick(t => t + 1), 80);
     return () => clearTimeout(id);
   }, [tick]);
 
@@ -114,7 +114,7 @@ function Step3Pin() {
   const [fill, setFill] = _useS(0);
   _useE(() => {
     if (fill >= 6) return;
-    const id = setTimeout(() => setFill(f => f + 1), 130);
+    const id = setTimeout(() => setFill(f => f + 1), 91);
     return () => clearTimeout(id);
   }, [fill]);
 
@@ -158,19 +158,12 @@ function Step4SelectAndAllow() {
 
         <div style={{
           padding: '7px 10px',
-          border: '1.5px solid #1766D6', borderRadius: 7,
+          border: '1px solid #ECEDED', borderRadius: 7,
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
           fontSize: 11, fontWeight: 700, color: '#1A1A1A',
         }}>
           <span>Aadhaar Card</span>
-          <div style={{
-            width: 14, height: 14, borderRadius: 3, background: '#16A34A',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-          }}>
-            <svg width="9" height="9" viewBox="0 0 12 12">
-              <path d="M2 6 L5 9 L10 3" stroke="#fff" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
+          <div style={{ width: 14, height: 14, borderRadius: 3, border: '1.5px solid #BFC2C4' }}/>
         </div>
 
         <div style={{

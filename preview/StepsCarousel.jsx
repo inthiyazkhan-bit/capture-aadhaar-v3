@@ -5,7 +5,7 @@ const CAROUSEL_STEPS = [
   { title: 'Select Aadhaar in the documents, & click Allow',    Visual: () => <Step4SelectAndAllow/> },
 ];
 
-function StepsCarousel({ intervalMs = 3000 }) {
+function StepsCarousel({ intervalMs = 2100 }) {
   const [idx, setIdx] = React.useState(0);
   React.useEffect(() => {
     const id = setInterval(() => setIdx(i => (i + 1) % CAROUSEL_STEPS.length), intervalMs);
